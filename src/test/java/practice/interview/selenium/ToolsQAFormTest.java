@@ -354,7 +354,9 @@ public class ToolsQAFormTest{
 	
 	@Test
 	public void widthOfATextBox(){
-		
+		driver.navigate().to("http://toolsqa.com/automation-practice-form");
+		WebElement firstName = driver.findElement(By.name("firstname"));
+		Assert.assertEquals(180, firstName.getSize().getWidth());
 	}
 	
 	@Test
