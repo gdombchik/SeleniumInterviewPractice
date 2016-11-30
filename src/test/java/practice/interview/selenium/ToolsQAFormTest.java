@@ -153,7 +153,8 @@ public class ToolsQAFormTest{
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.name("firstname")));		 
 	}
 	
-	@Test void visibilityOfWaits(){
+	@Test 
+	public void visibilityOfWaits(){
 		
 	}
 	
@@ -306,7 +307,43 @@ public class ToolsQAFormTest{
 	
 	@Test
 	public void handleFrames(){
+		driver.navigate().to(" http://toolsqa.wpengine.com/iframe-practice-page/");
+		//Assert.assertEquals(2,driver.findElements(By.tagName("iframe")).size());
+		//Assert.assertEquals(2,driver.findElements(By.xpath("//iframe")).size());
+		/*List<WebElement> webElements = driver.findElements(By.xpath("//iframe"));
+		for(WebElement webElement : webElements){
+			System.out.println(webElement.getAttribute("id"));
+		}*/
+		/*
+		 * Frame Ids below
+		 * IF1
+			IF2
+			aswift_0
+			aswift_1
+			aswift_2
+		 */
+		//Switch by Index
+		driver.switchTo().frame(0);
+		WebElement firstName = driver.findElement(By.name("firstname"));
+		firstName.sendKeys("First Name Text");
+		Assert.assertTrue(firstName.getAttribute("value").equals("First Name Text"));
 		
+		//switch back to main document
+ 		driver.switchTo().defaultContent();
+		
+		//Switch by Name or id
+		driver.switchTo().frame("IF2");
+		WebElement registration = driver.findElement(By.xpath("//a[@href='http://demoqa.com/registration/']"));
+		Assert.assertTrue(registration.getText().equals("Registration"));
+		
+		//switch back to main document
+ 		driver.switchTo().defaultContent();
+ 		
+ 		//Switch by WebElement
+ 		driver.switchTo().frame(driver.findElement(By.id("IF1")));
+ 		WebElement lastName = driver.findElement(By.name("lastname"));
+ 		lastName.sendKeys("Last Name Text");
+		Assert.assertTrue(lastName.getAttribute("value").equals("Last Name Text"));
 	}
 	
 	@Test
