@@ -9,6 +9,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -72,6 +73,8 @@ public class ToolsQAFormTest{
 		//Radio Button
 		WebElement yearsOfExperienceOne = driver.findElement(By.id("exp-0"));
 		Assert.assertFalse(yearsOfExperienceOne.isSelected()); //not selected yet
+		Assert.assertTrue(yearsOfExperienceOne.isDisplayed()); //Check if an element is visible on the web page
+		Assert.assertTrue(yearsOfExperienceOne.isEnabled()); //Check if an element is enabled on the web page
 		yearsOfExperienceOne.click(); //selected
 		Assert.assertTrue(yearsOfExperienceOne.isSelected()); //confirm selection
 		Assert.assertEquals("1",yearsOfExperienceOne.getAttribute("value")); //check value
@@ -361,12 +364,60 @@ public class ToolsQAFormTest{
 	
 	@Test
 	public void rightClickOnAnElement(){
+		/*driver.navigate().to("http://toolsqa.com/automation-practice-form");
+		Actions act = new Actions(driver);
+		WebElement submitButtonOne = driver.findElement(By.tagName("button"));
+		act.contextClick(submitButtonOne).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).build().perform();
+		for(String s : driver.getWindowHandles()){
+			System.out.println(s);
+		}*/
 		
+		/*driver.navigate().to("http://medialize.github.io/jQuery-contextMenu/demo.html");
+		By locator = By.cssSelector(".context-menu-one.box");
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(locator)); 
+		WebElement element=driver.findElement(locator);
+		rightClick(element);
+		WebElement elementEdit =driver.findElement(By.cssSelector(".context-menu-item.icon.icon-edit>span"));
+		elementEdit.click();
+		Alert alert=driver.switchTo().alert();
+		String textEdit = alert.getText();
+		Assert.assertEquals(textEdit, "clicked: edit", "Failed to click on Edit link");*/
+
+	}
+	
+	private void rightClick(WebElement element) {
+		try {
+			Actions action = new Actions(driver).contextClick(element);
+			action.build().perform();
+
+			System.out.println("Sucessfully Right clicked on the element");
+		} catch (StaleElementReferenceException e) {
+			System.out.println("Element is not attached to the page document "
+					+ e.getStackTrace());
+		} catch (NoSuchElementException e) {
+			System.out.println("Element " + element + " was not found in DOM "
+					+ e.getStackTrace());
+		} catch (Exception e) {
+			System.out.println("Element " + element + " was not clickable "
+					+ e.getStackTrace());
+		}
 	}
 	
 	@Test
 	public void dragAndDropOnAnElement(){
-		
+		driver.navigate().to("http://demoqa.com/droppable/");
+		//source WebElement
+		WebElement webElementSource = driver.findElement(By.xpath("//div[@id='draggableview']"));
+		Assert.assertEquals("Drag me to my target", webElementSource.getText());
+		//target WebElement
+		WebElement webElementTarget = driver.findElement(By.id("droppableview"));
+		Assert.assertEquals("Drop here",webElementTarget.getText());
+		//Actions - used for KeyBoard or Mouse
+		Actions actions = new Actions(driver);
+		actions.dragAndDrop(webElementSource, webElementTarget).build().perform();;
+		//Check the text has changed from 'Drop here' to 'Dropped!'
+		Assert.assertEquals("Dropped!",webElementTarget.getText());
 	}
 	
 	@Test
@@ -381,7 +432,8 @@ public class ToolsQAFormTest{
 	
 	@Test
 	public void superInterfaceOfWebDriver(){
-		
+		//WebDriver implements SearchContext		
+		Assert.assertEquals("SearchContext","SearchContext");
 	}
 	
 	@Test
