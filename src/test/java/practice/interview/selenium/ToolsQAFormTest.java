@@ -14,6 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.server.handler.FindElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -422,7 +423,20 @@ public class ToolsQAFormTest{
 	
 	@Test
 	public void hoverTheMouseOnAnElement(){
+		driver.get("http://store.demoqa.com/");
+		WebElement webElementProductCategory = driver.findElement(By.linkText("Product Category"));
+		Actions actions = new Actions(driver);
+		actions.moveToElement(webElementProductCategory).build().perform();
+		/*try{
+			Thread.sleep(5000);
+		}catch(Exception e){
+			
+		}*/
 		
+		//explicit wait
+		WebElement webElementIpads = (new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(By.linkText("iPads")));
+		webElementIpads.click();
+		Assert.assertEquals(driver.getCurrentUrl(), "http://store.demoqa.com/products-page/product-category/ipads/");
 	}
 	
 	@Test
