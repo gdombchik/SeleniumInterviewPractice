@@ -22,6 +22,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import practice.interview.selenium.utils.WebDriverUtils;
+
 
 public class ToolsQAFormTest{
 	/*private static WebDriver driver;
@@ -37,10 +39,12 @@ public class ToolsQAFormTest{
 	}*/
 	
 	private WebDriver driver;
+	private WebDriverUtils webDriverUtils;
 	
 	@Before
 	public void setUp() throws Exception {
 		driver =  new FirefoxDriver(); 
+		webDriverUtils = new WebDriverUtils(driver);
 	}
 	
 	@After
@@ -440,7 +444,7 @@ public class ToolsQAFormTest{
 		Assert.assertEquals(driver.getCurrentUrl(), "http://store.demoqa.com/products-page/product-category/ipads/");
 	}
 	
-	@Test
+	@Ignore @Test
 	public void doubleClickOnAnElement(){
 		//http://stackoverflow.com/questions/29475414/how-to-check-if-a-text-is-highlighted-on-the-page-using-selenium
 		
@@ -488,9 +492,24 @@ public class ToolsQAFormTest{
 		
 	}
 	
-	@Ignore @Test
+	@Test
 	public void javascriptInSelenium(){
+		driver.navigate().to("http://toolsqa.com/automation-practice-form");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
+		String datePickerData = "Date Picker Data";
+		WebElement datePickerByJavascript = getDateByDOMGetElementById();
+		datePickerByJavascript.sendKeys(datePickerData);
+		WebElement datePickerByJQuery = getDateByJQuery();
+		Assert.assertEquals(datePickerData,datePickerByJQuery.getAttribute("value"));
+	}
+	
+	private WebElement getDateByDOMGetElementById(){
+		return webDriverUtils.getWebElementByJavaScript("document.getElementById('datepicker')");
+	}
+	
+	private WebElement getDateByJQuery(){
+		return webDriverUtils.getWebElementByJavaScript("$('#datepicker')[0]");
 	}
 	
 	@Ignore @Test
