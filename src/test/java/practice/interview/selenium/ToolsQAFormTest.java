@@ -477,9 +477,12 @@ public class ToolsQAFormTest{
 		
 	}
 	
-	@Ignore @Test
+	@Test
 	public void widthAndHeightOfTheRenderedElement(){
-		
+		driver.navigate().to("http://toolsqa.com/automation-practice-form");
+		WebElement webElementDatePicker = driver.findElement(By.id("datepicker"));
+		Assert.assertEquals(180,webElementDatePicker.getSize().width);
+		Assert.assertEquals(33,webElementDatePicker.getSize().height);
 	}
 	
 	@Ignore @Test
@@ -489,10 +492,11 @@ public class ToolsQAFormTest{
 	
 	@Ignore @Test
 	public void maximizeTheWindow(){
-		
+		driver.navigate().to("http://toolsqa.com/automation-practice-form");
+		driver.manage().window().maximize();
 	}
 	
-	@Test
+	@Ignore @Test
 	public void javascriptInSelenium(){
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
