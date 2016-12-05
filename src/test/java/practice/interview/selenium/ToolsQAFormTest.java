@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -46,7 +47,7 @@ public class ToolsQAFormTest{
 		driver.quit();
 	}
 	
-	@Test
+	@Ignore @Test
 	public void listWebElementLocators(){
 		//by.name("")
 		//by.id("")
@@ -60,7 +61,7 @@ public class ToolsQAFormTest{
 		//Assert.assertTrue(true);
 	}
 
-	@Test
+	@Ignore @Test
 	public void toolsQAForm() {
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -117,7 +118,7 @@ public class ToolsQAFormTest{
 		String urlTwo = driver.getCurrentUrl();
 	}
 	
-	@Test
+	@Ignore @Test
 	public void implicitWait(){
 		/* Implicit Wait: During Implicit wait if the Web Driver cannot find it immediately because of its availability, 
 		 * it will keep polling (around 250 milli seconds) the DOM to get the element. If the element is not available within 
@@ -127,7 +128,7 @@ public class ToolsQAFormTest{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void explicitWait(){
 		/*Explicit Wait: There can be instance when a particular element takes more than a minute to load. 
 		 *In that case you definitely not like to set a huge time to Implicit wait, as if you do this your browser 
@@ -141,7 +142,7 @@ public class ToolsQAFormTest{
 		WebElement firstName = (new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(By.name("firstname")));
 	}
 	
-	@Test
+	@Ignore @Test
 	public void fluentWait(){
 		/*Fluent Wait: Let’s say you have an element which sometime appears in just 1 second and some time it takes minutes to appear. 
 		 *In that case it is better to use fluent wait, as this will try to find element again and again until it find it or until the final timer runs out.*/
@@ -156,7 +157,7 @@ public class ToolsQAFormTest{
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.name("firstname")));		 
 	}
 	
-	@Test 
+	@Ignore @Test 
 	public void visibilityOfWaits(){
 		driver.get("http://toolsqa.com/automation-practice-form");
 		
@@ -176,7 +177,7 @@ public class ToolsQAFormTest{
 		List<WebElement> radioButtons_visibilityOfAllElementsLocatedBy = (new WebDriverWait(driver,10)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("exp")));
 	}
 	
-	@Test
+	@Ignore @Test
 	public void threadSleep(){
 		/*Stop the thread at the exact specified time.  
 		Does not check WebElements to be found. 
@@ -189,7 +190,7 @@ public class ToolsQAFormTest{
 		} //2 seconds
 	}
 	
-	@Test 
+	@Ignore @Test 
 	public void navigationCommands(){
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		driver.navigate().back();
@@ -197,7 +198,7 @@ public class ToolsQAFormTest{
 		driver.navigate().refresh();
 	}
 
-	@Test
+	@Ignore @Test
 	public void simpleAlertPopUp(){
 		driver.navigate().to("http://toolsqa.com/handling-alerts-using-selenium-webdriver/");
 		//WebElement simpleAlertPopUpButton = driver.findElement(By.xpath("//button[text()='Simple Alert']"));
@@ -212,7 +213,7 @@ public class ToolsQAFormTest{
 		driver.switchTo().window(mainPage);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void confirmAlertBox(){
 		driver.navigate().to("http://toolsqa.com/handling-alerts-using-selenium-webdriver/");
 		//WebElement confirmAlertBoxButton = driver.findElement(By.xpath("//button[text()='Confirm Pop up']"));
@@ -228,7 +229,7 @@ public class ToolsQAFormTest{
 		driver.switchTo().window(mainPage);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void promptAlertBox(){
 		driver.navigate().to("http://toolsqa.com/handling-alerts-using-selenium-webdriver/");
 		//WebElement promptAlertBoxButton = driver.findElement(By.xpath("//button[text()='Prompt Pop up']"));
@@ -245,7 +246,7 @@ public class ToolsQAFormTest{
 		driver.switchTo().window(mainPage);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void sendKeysReturnAndEnter(){
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		Actions act = new Actions(driver);
@@ -257,7 +258,7 @@ public class ToolsQAFormTest{
 		//System.out.println(driver.getCurrentUrl());
 	}
 	
-	@Test
+	@Ignore @Test
 	public void differentWebDriverExceptions(){
 		//NoSuchElementException:  getWebElement or getWebElements not found
 		//StaleElementReferenceException
@@ -270,7 +271,7 @@ public class ToolsQAFormTest{
 		//WebDriverException
 	}
 	
-	@Test
+	@Ignore @Test
 	public void frameWorkDescriptions(){
 		/*
 		 * 1.  Data Driven Automation Framework:  Data-driven testing (DDT) is a term used in the testing of computer software to 
@@ -318,7 +319,7 @@ public class ToolsQAFormTest{
 		 */
 	}
 	
-	@Test
+	@Ignore @Test
 	public void handleWindows(){
 		//Return an opaque handle to this window that uniquely identifies it within this driver instance. 
 		//This can be used to switch to this window at a later date
@@ -336,7 +337,7 @@ public class ToolsQAFormTest{
 		}
 	}
 	
-	@Test
+	@Ignore @Test
 	public void handleFrames(){
 		driver.navigate().to(" http://toolsqa.wpengine.com/iframe-practice-page/");
 		//Assert.assertEquals(2,driver.findElements(By.tagName("iframe")).size());
@@ -377,20 +378,20 @@ public class ToolsQAFormTest{
 		Assert.assertTrue(lastName.getAttribute("value").equals("Last Name Text"));
 	}
 	
-	@Test
+	@Ignore @Test
 	public void webDriverPackage(){
 		//driver.getClass().getPackage().getName() --> org.openqa.selenium.firefox
 		Assert.assertTrue(driver.getClass().getPackage().getName().contains("org.openqa.selenium"));
 	}
 	
-	@Test
+	@Ignore @Test
 	public void widthOfATextBox(){
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		WebElement firstName = driver.findElement(By.name("firstname"));
 		Assert.assertEquals(180, firstName.getSize().getWidth());
 	}
 	
-	@Test
+	@Ignore @Test
 	public void rightClickOnAnElement(){
 		/*driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		Actions act = new Actions(driver);
@@ -432,7 +433,7 @@ public class ToolsQAFormTest{
 		}
 	}
 	
-	@Test
+	@Ignore @Test
 	public void dragAndDropOnAnElement(){
 		driver.navigate().to("http://demoqa.com/droppable/");
 		//source WebElement
@@ -448,7 +449,7 @@ public class ToolsQAFormTest{
 		Assert.assertEquals("Dropped!",webElementTarget.getText());
 	}
 	
-	@Test
+	@Ignore @Test
 	public void hoverTheMouseOnAnElement(){
 		driver.get("http://store.demoqa.com/");
 		WebElement webElementProductCategory = driver.findElement(By.linkText("Product Category"));
@@ -466,7 +467,7 @@ public class ToolsQAFormTest{
 		Assert.assertEquals(driver.getCurrentUrl(), "http://store.demoqa.com/products-page/product-category/ipads/");
 	}
 	
-	@Test
+	@Ignore @Test
 	public void doubleClickOnAnElement(){
 		//http://stackoverflow.com/questions/29475414/how-to-check-if-a-text-is-highlighted-on-the-page-using-selenium
 		
@@ -483,18 +484,18 @@ public class ToolsQAFormTest{
 		//System.out.println(driver.getCurrentUrl());
 	}
 	
-	@Test
+	@Ignore @Test
 	public void superInterfaceOfWebDriver(){
 		//WebDriver implements SearchContext		
 		Assert.assertEquals("SearchContext","SearchContext");
 	}
 	
-	@Test
+	@Ignore @Test
 	public void screenShotEventFiringWebDriver(){
 		
 	}
 	
-	@Test
+	@Ignore @Test
 	public void screenShotTakesScreenshot(){
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		File screenShotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -506,7 +507,7 @@ public class ToolsQAFormTest{
 		}
 	}
 	
-	@Test
+	@Ignore @Test
 	public void widthAndHeightOfTheRenderedElement(){
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		WebElement webElementDatePicker = driver.findElement(By.id("datepicker"));
@@ -517,15 +518,16 @@ public class ToolsQAFormTest{
 	@Test
 	public void syntaxSiblings(){
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
+		//WebElement datePicker = driver.findElement(By.xpath("//input[@id='datepicker']/following-sibling::input[1]"));
 	}
 	
-	@Test
+	@Ignore @Test
 	public void maximizeTheWindow(){
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		driver.manage().window().maximize();
 	}
 	
-	@Test
+	@Ignore @Test
 	public void javascriptInSelenium(){
 		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -545,7 +547,7 @@ public class ToolsQAFormTest{
 		return webDriverUtils.getWebElementByJavaScript("$('#datepicker')[0]");
 	}
 	
-	@Test
+	@Ignore @Test
 	public void xPathOfAElement(){
 		//htmltag[@attname='attvalue']
 		//htmltag[text()='textvalue']
